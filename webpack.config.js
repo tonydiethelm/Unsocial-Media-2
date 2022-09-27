@@ -16,7 +16,21 @@ module.exports = {
   entry: "./src/react-index.js",      //application starts running and webpack starts bundling here. 
   output: {
     path: path.join(__dirname, 'dist'), //target directory for all output files. 
-    filename: "[name].js",              //What is this? A default. :D Puts files by name in dir specified above.
+    filename: "bundle.js",              //What is this? A default. :D Puts files by name in dir specified above.
+  },
+  devServer: {                          //Need to configure the dev server to serve up front end stuff. 
+    host: 'localhost',
+    port: 8080,
+    //match the output path.              Why?
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    hot: true,
+    proxy: {
+      //I need to set up the proxy server for the front end stuff to 
+      //make proper get/post requests to the back end. 
+    }
+
   },
   plugins: [htmlPlugin],                //rules for HTML Web Pack Plugin. Defined above. 
   module: {                             //configuration for the various modules. 
