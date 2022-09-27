@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unsocial Media Settings</title>
+  <link rel="stylesheet" href="style.css">  
+</head>
+<body>
+  <div id="main">
+    <summary>This is where you change the settings for your Unsocial Media site. 
+      None of these are necessary to run it. You can safely accept the defaults. 
+      You might want to change the styling to have your site look a certain way.
+    </summary>
+    <form id="settings">
+      <label for="folder">What folder/directory do you want Unsocial Media to watch for pictures, text, etc?</label>
+      <input type="text" id="folder">
+      <label for="port">What port should your Unsocial Media site run on? The default of 80 is fine for most people.</label>
+      <input type="text" id="port">
+      <label for="style">What style do you want to use for your Unsocial Media site?</label>
+      <select id="style">
+        <option value="default">Default</option>
+        <option value="testing">Testing</option>
+      </select>
+    </form>
+
+  </div>
+
+</body>
+<!--Remember that script has to be AFTER the above elements load, or the script can't see them, 
+  because they aren't created yet. -->
+<script src="settings.js"></script> 
+</html> 
