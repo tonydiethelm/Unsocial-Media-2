@@ -12,26 +12,34 @@
 //setup stuff
 //path setup
 const path = require('node:path');
-
 //express setup
 const express = require('express');
 const app = express();
 const port = 3000;
-    //Caution! We are inside server dir here. Set pathnames accordingly.
+//Caution! We are inside server dir here. Set pathnames accordingly.
 const webpackDirectory = path.join(__dirname, '../webpack');
 const settingsFile= path.join(__dirname, '../settings.html');  
 const mainFile = path.join(__dirname, '../webpack/HWPP-index.html');
+//automagically destring incoming JSON
+app.use(express.json());
+//require my middleware
+const mapMyDirectory = require('./mapMyDirectory.js')
+
 
 
 
 //My little tester middleware for seeing where we're at. 
 const holler = (request, response, next) => {
   console.log('Holler! We\'re in the mapMyDirectory router!');
+  console.log('request body is...', request.body)
+  console.log('response locals is...', response.locals)
   return next();
 }
 
 
-//static serve the webpack Directory.
+
+
+//static serve the webpack Directory. Might repurpose to send picture assets. 
 app.use(express.static(webpackDirectory))
 
 //test response for initial functionality. 
@@ -44,7 +52,7 @@ app.get('/test',
 //handle requests for base app created by react and bundled by html webpack plugin. 
 //this isn't served here and doesn't work. It never goes through this, because it's served off the 
 //webdev server on 8080. Can't proxy back, or it won't get the react stuff. Annoying... 
-//So, will have to build up app in base react, and handle requests as params/queries off a separate URI. 
+//So, will have to build up app in base react, and handle requests off a separate URI. 
 // app.get('/', 
 //   holler,
 //   (request, response) => {
@@ -54,8 +62,9 @@ app.get('/test',
 //handle requests for settings page
 app.get('/directory', 
   holler,
+  mapMyDirectory,
   (request, response) => {
-    response.status(200).send(req.locals.mapping)
+    response.status(200).send(response.locals.mapping)
 });
 
 //handle requests for settings page
