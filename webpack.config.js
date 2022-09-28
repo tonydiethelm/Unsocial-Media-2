@@ -16,7 +16,8 @@ module.exports = {
   entry: "./react/react-index.js",      //application starts running and webpack starts bundling here. 
   output: {
     path: path.join(__dirname, 'webpack'), //target directory for all output files. 
-    filename: "bundle.js",              //What is this? A default. :D Puts files by name in dir specified above.
+    filename: "bundle.js",                 //Puts files by name in dir specified above.
+    publicPath: '/'                        //Where you uploaded your bundled files. Relative to filename above?
   },
   devServer: {                          //Need to configure the dev server to serve up front end stuff. 
     host: 'localhost',
@@ -24,11 +25,14 @@ module.exports = {
     //match the output path.              Why?
     static: {
       directory: path.join(__dirname, 'webpack'),
+      publicPath: '/',
     },
     hot: true,
     proxy: {
       //I need to set up the proxy server for the front end stuff to 
       //make proper get/post requests to the back end. 
+      '/settings': {target: 'http://localhost:3000/', secure: false,},
+      '/test': {target: 'http://localhost:3000/', secure: false,},
     }
 
   },

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/express-index.js",
     "build": "webpack --mode production",
-    "dev": "concurrently \"webpack-dev-server --mode development --hot --progress --color\" \"nodemon server/express-index.js\"",
+    "dev": "concurrently \"webpack-dev-server --mode development --hot --progress --color\" \"nodemon express/express-index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
