@@ -7,15 +7,15 @@ https://webpack.js.org/configuration/
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
 const htmlPlugin = new HtmlWebPackPlugin({
-  template: "./src/react-index.html",   //file it will use as a template to build...
-  filename: "./react-index.html"        //this file here. 
+  template: "./react/react-index.html",   //file it will use as a template to build...
+  filename: "./HWPP-index.html"        //this file here. 
 });
 
 module.exports = {
   //various configurations for webpack. 
-  entry: "./src/react-index.js",      //application starts running and webpack starts bundling here. 
+  entry: "./react/react-index.js",      //application starts running and webpack starts bundling here. 
   output: {
-    path: path.join(__dirname, 'dist'), //target directory for all output files. 
+    path: path.join(__dirname, 'webpack'), //target directory for all output files. 
     filename: "bundle.js",              //What is this? A default. :D Puts files by name in dir specified above.
   },
   devServer: {                          //Need to configure the dev server to serve up front end stuff. 
@@ -23,7 +23,7 @@ module.exports = {
     port: 8080,
     //match the output path.              Why?
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'webpack'),
     },
     hot: true,
     proxy: {
