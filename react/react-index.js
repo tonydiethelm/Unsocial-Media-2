@@ -6,6 +6,7 @@
 //setup stuff
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import './react-style.css';
 const startingDirectory = '~/Public';
 //const getDirectoryContents = require('./getDirectoryContents.js');  Not doing this here, do in express middleware. 
 

@@ -8,7 +8,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./react/react-index.html",   //file it will use as a template to build...
-  //filename: "./HWPP-index.html"           //this file here. 
+  //filename: "./HWPP-index.html"           //this file here.   Commented out, works
 });
 
 module.exports = {
