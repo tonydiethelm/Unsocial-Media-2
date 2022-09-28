@@ -28,7 +28,7 @@ module.exports = {
       directory: path.join(__dirname, 'webpack'),
       publicPath: '/',
     },
-    hot: true,
+    //hot: true,                                     //I'm calling this in the package.json script. Not needed here. 
     headers: {'Tony Diethelm': 'Was Here. :D'},      //This is added to all headers. Fun! 
     proxy: {
       //I need to set up the proxy server for the front end stuff to 
@@ -48,7 +48,12 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
-      }
+      },
+      {
+        test: /.(css|scss)$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader'],
+      },
     ]
   }
 };

@@ -37,6 +37,9 @@ app.get('/test',
 });
 
 //handle requests for base app created by react and bundled by html webpack plugin. 
+//this isn't served here and doesn't work. It never goes through this, because it's served off the 
+//webdev server on 8080. Can't proxy back, or it won't get the react stuff. Annoying... 
+//So, will have to build up app in base react, and handle requests as params/queries off a separate URI. 
 app.get('/', 
   holler,
   (request, response) => {
