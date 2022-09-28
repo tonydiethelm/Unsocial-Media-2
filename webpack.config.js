@@ -8,18 +8,19 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./react/react-index.html",   //file it will use as a template to build...
-  filename: "./HWPP-index.html"        //this file here. 
+  //filename: "./HWPP-index.html"           //this file here. 
 });
 
 module.exports = {
   //various configurations for webpack. 
-  entry: "./react/react-index.js",      //application starts running and webpack starts bundling here. 
+  entry: "./react/react-index.js",        //application starts running and webpack starts bundling here. 
   output: {
     path: path.join(__dirname, 'webpack'), //target directory for all output files. 
     filename: "bundle.js",                 //Puts files by name in dir specified above.
-    publicPath: '/'                        //Where you uploaded your bundled files. Relative to filename above?
+    publicPath: '/',                      //Where you uploaded your bundled files. Relative to filename above?
   },
-  devServer: {                          //Need to configure the dev server to serve up front end stuff. 
+  //mode: 'development',                    //Shouldn't need this, I'm calling "--mode development" in the package.json dev script.
+  devServer: {                            //Need to configure the dev server to serve up front end stuff. 
     host: 'localhost',
     port: 8080,
     //match the output path.              Why?
@@ -28,11 +29,13 @@ module.exports = {
       publicPath: '/',
     },
     hot: true,
+    headers: {'Tony Diethelm': 'Was Here. :D'},      //This is added to all headers. Fun! 
     proxy: {
       //I need to set up the proxy server for the front end stuff to 
       //make proper get/post requests to the back end. 
       '/settings': {target: 'http://localhost:3000/', secure: false,},
       '/test': {target: 'http://localhost:3000/', secure: false,},
+      //'/': {target: 'http:localhost:3000/', secure: false,},   //Future? I'm going to need middleware to handle options/parameters. 
     }
 
   },
@@ -40,7 +43,7 @@ module.exports = {
   module: {                             //configuration for the various modules. 
     rules:[
       {//babel loader rules. Test for js and jsx, don't do node modules, use babel-loader.
-        test: /\.(js|jsx)$/,
+        test: /.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"

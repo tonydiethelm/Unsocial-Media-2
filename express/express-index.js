@@ -22,26 +22,39 @@ const settingsFile= path.join(__dirname, '../settings.html');
 const mainFile = path.join(__dirname, '../webpack/HWPP-index.html');
 
 
+const holler = (request, response, next) => {
+  console.log('Holler! We\'re in the / router!');
+  return next();
+}
+
 
 
 //test response for initial functionality. 
-app.get('/test', (request, response) => {
-  response.status(200).send('Testing Testing, express is functioning. Is nodemon? Yes. ')
+app.get('/test', 
+  //holler,
+  (request, response) => {
+    response.status(200).send('Testing Testing, express is functioning. Is nodemon? Yes. ')
 });
 
 //handle requests for base app created by react and bundled by html webpack plugin. 
-app.get('/', (request, response) => {
-  response.status(200).sendFile(mainFile)
+app.get('/', 
+  holler,
+  (request, response) => {
+    response.status(200).sendFile(mainFile)
 });
 
 //handle requests for settings page
-app.get('/settings', (request, response) => {
-  response.status(200).sendFile(settingsFile)
+app.get('/settings', 
+  //holler,
+  (request, response) => {
+    response.status(200).sendFile(settingsFile)
 });
 
 //handle wrong URIs
-app.use('*', (request, response) => {
-  response.status(404).send('Sorry, we don\'t have that here.')
+app.use('*', 
+  //holler,
+  (request, response) => {
+    response.status(404).send('Sorry, we don\'t have that here.')
 });
 
 //handle errors
