@@ -69,8 +69,8 @@ app.get('/test',
 app.post('/directory', 
   mapMyDirectory,
   makeLinks,
-  holler,
   getText,
+  holler,
   (request, response) => {
     response.status(200).send(response.locals.mapping)
 });

@@ -29,7 +29,7 @@ makeLinks = (request, response, next) => {
         let target = targetDirectory + slash + pic;
         let destination = path.join(__dirname + '/../webpack/' + pic)
         fs.symlink(target, destination, (error) => {
-            if(error){console.log(error)}
+            //if(error){console.log(error)}
         })
     }
 

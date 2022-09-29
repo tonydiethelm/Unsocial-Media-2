@@ -20,18 +20,23 @@ getText = async (request, response, next) => {
 
     //get the text from response.locals.mapping.text
     const allTheTexts = response.locals.mapping.text;
+    //console.log(allTheTexts);
 
     //change text names to text
     //fs.readFile(target)  is async. How am I going to loop over an async function? Use await for response. 
-    for(let individualText of allTheTexts){
-        let target = targetDirectory + slash + individualText;
+    for(let index = 0; index < allTheTexts.length; index++){
+        let target = targetDirectory + slash + allTheTexts[index];
+        //console.log('The target is... ', target);
         
-        await fs.readFile(target, (error, text) => {
+        await fs.readFile(target, 'utf8', (error, text) => {
             if(error){console.log(error)}
-            if(text){individualText = text}
+            if(text){response.locals.mapping.text[index] = text}
+            //console.log('This should be full of text... ', response.locals.mapping.text[index]);
+            if (index = )
         });
-        console.log(individualText);
-        }
+        
+    }
+    console.log('end of getText');
     return next();
 };
 
