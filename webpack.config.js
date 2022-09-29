@@ -35,6 +35,7 @@ module.exports = {
       //make proper get/post requests to the back end. 
       '/settings': {target: 'http://localhost:3000/', secure: false,},
       '/test': {target: 'http://localhost:3000/', secure: false,},
+      '/directory': {target: 'http://localhost:3000/', secure: false,},
       //'/': {target: 'http:localhost:3000/', secure: false,},   //Future? I'm going to need middleware to handle options/parameters. 
     }
 

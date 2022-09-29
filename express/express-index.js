@@ -18,21 +18,25 @@ const app = express();
 const port = 3000;
 //Caution! We are inside server dir here. Set pathnames accordingly.
 const webpackDirectory = path.join(__dirname, '../webpack');
+let pictureDirectory = '/home/tony/Public'
 const settingsFile= path.join(__dirname, '../settings.html');  
 const mainFile = path.join(__dirname, '../webpack/HWPP-index.html');
 //automagically destring incoming JSON
 app.use(express.json());
 //require my middleware
 const mapMyDirectory = require('./mapMyDirectory.js')
+const makeLinks = require('./makeLinks.js')
 
 
 
 
 //My little tester middleware for seeing where we're at. 
 const holler = (request, response, next) => {
-  console.log('Holler! We\'re in the mapMyDirectory router!');
+  
+  console.log('\n \nHoller! We\'re in the mapMyDirectory router!');
   console.log('request body is...', request.body)
   console.log('response locals is...', response.locals)
+  console.log('\n\n')
   return next();
 }
 
@@ -40,7 +44,8 @@ const holler = (request, response, next) => {
 
 
 //static serve the webpack Directory. Might repurpose to send picture assets. 
-app.use(express.static(webpackDirectory))
+//app.use(express.static(webpackDirectory))
+app.use(express.static(pictureDirectory))
 
 //test response for initial functionality. 
 app.get('/test', 
@@ -60,9 +65,10 @@ app.get('/test',
 // });
 
 //handle requests for settings page
-app.get('/directory', 
+app.post('/directory', 
   holler,
   mapMyDirectory,
+  makeLinks,
   (request, response) => {
     response.status(200).send(response.locals.mapping)
 });
@@ -78,7 +84,7 @@ app.get('/settings',
 app.use('*', 
   //holler,
   (request, response) => {
-    response.status(404).send('Sorry, we don\'t have that here.')
+    response.status(404).json('Sorry, we don\'t have that here.')
 });
 
 //handle errors

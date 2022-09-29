@@ -18,21 +18,20 @@ How is the directory path going to be sent in?
 //Need the module to create the object. 
 const DirectoryContents = require('./getDirectoryContents');
 const getDirectoryContents = require('./getDirectoryContents');
-const getEm = new DirectoryContents
 
 
 
 
 mapMyDirectory = (request, response, next) => {
     //get requested directory
-    const targetDirectory = request.body.targetDirectory
-    console.log('target directory is...', targetDirectory)
+    const targetDirectory = request.body.targetDirectory;
+    //console.log('target directory is...', targetDirectory);
     //run it through the module
-    const mapping = getDirectoryContents(targetDirectory);
+    const mapping = new getDirectoryContents(targetDirectory);
     //send it onward through response.locals.mapping, as dictated by route in express-index.js
     //testing
-    console.log('mapping is...', mapping);
-    response.locals.mapping = "hi";
+    //console.log('mapping is...', mapping);
+    response.locals.mapping = mapping;
     return next();
 }
 

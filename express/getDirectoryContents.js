@@ -12,7 +12,7 @@ I want this in an object of arrays for easy access.
 //fs
 //from documentation, import * as fs from 'node:fs' for callback and sync, use import * as fs from 'node:fs/promises' for promise based.
 //Except these are built in and don't need to be required. 
-//const fs = require('fs')
+const fs = require('fs');
 
 
 class DirectoryContents {
