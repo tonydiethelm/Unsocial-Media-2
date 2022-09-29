@@ -4,7 +4,6 @@ I need a middleware to...
     make a symbolic link from the pictures in the target directory to the webpack folder. 
 */
 
-const { flushSync } = require("react-dom");
 
 
 //setup stuff
@@ -18,11 +17,11 @@ const path = require('node:path');
 makeLinks = (request, response, next) => {
     //get requested directory
     const targetDirectory = request.body.targetDirectory;
-    console.log(targetDirectory);
+    //console.log(targetDirectory);
 
     //get picture names
     const pictureNames = response.locals.mapping.pictures;
-    console.log(pictureNames);
+    //console.log(pictureNames);
 
     //create symbolic links
     //fs.symlinkSync( target, path, type )

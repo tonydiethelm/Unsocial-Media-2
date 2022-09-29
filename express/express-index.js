@@ -26,14 +26,15 @@ app.use(express.json());
 //require my middleware
 const mapMyDirectory = require('./mapMyDirectory.js')
 const makeLinks = require('./makeLinks.js')
+const getText = require('./getText.js')
 
 
 
 
-//My little tester middleware for seeing where we're at. 
+//My little tester middleware for seeing What's what.
 const holler = (request, response, next) => {
   
-  console.log('\n \nHoller! We\'re in the mapMyDirectory router!');
+  console.log('\n \nHoller! We\'re in the router you\'re testing!');
   console.log('request body is...', request.body)
   console.log('response locals is...', response.locals)
   console.log('\n\n')
@@ -66,9 +67,10 @@ app.get('/test',
 
 //handle requests for settings page
 app.post('/directory', 
-  holler,
   mapMyDirectory,
   makeLinks,
+  holler,
+  getText,
   (request, response) => {
     response.status(200).send(response.locals.mapping)
 });

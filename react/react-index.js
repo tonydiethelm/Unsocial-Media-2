@@ -138,10 +138,10 @@ class App extends Component {
                             target={pictureName}
                         />
                     ))}
-                    {this.state.text.map((textName, index) =>
+                    {this.state.text.map((individualText, index) =>
                         (<Text
-                            name = {textName}
-                            target={this.state.directoryToShow + slash + textName}
+                            key = {index}
+                            target={individualText}
                         />
                     ))}
                 </div>
@@ -180,13 +180,9 @@ class Picture extends Component{
 
 class Text extends Component{
     render() {
-        fs.readFile(this.props.target, (error, data) => {
-            if(error){console.log(error)};
-            let fileText = data;
-        })
         return(
-            <div className="text same" key = {this.props.name}> 
-                <p className = 'same'>{fileText}</p>
+            <div className="text same" key = {this.props.index}> 
+                <p className = 'same'>{this.props.individualText}</p>
             </div>
             )
     }
