@@ -39,23 +39,22 @@ div.link {
     margin: 10px;
 }
 
+.same {
+    box-shadow: 10px 10px;
+    border-radius: 10px;
+}
 div.text {
     border-style: solid;
     border-width: 2px;
     border-color: black;
     margin: 10px;
-    box-shadow: 10px 10px;
 }
 
 button {
     height: 100px;
     width: 100px;
-    border-radius: 10px;
-    box-shadow: 10px 10px;
 }
 
 img {
     width: 400px;
-    border-radius: 10px;
-    box-shadow: 10px 10px;
 }

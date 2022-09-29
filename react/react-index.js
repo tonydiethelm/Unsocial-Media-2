@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom';
 import './react-style.css';
 const startingDirectory = '/home/tony/Public';
 const slash = '/'; //Need to fix some directories. :/
+//const fs = require('fs');
 
 //testing div, need to make sure this works at all. 
 //Change render at bottom to Testing to see if it React is working. 
@@ -156,7 +157,7 @@ class Link extends Component{
     render() {
         return(
             <div className="link">
-                <button key = {this.props.name}> 
+                <button key = {this.props.name} className = 'same'> 
                 {this.props.name}
                 {/* Going to need an onclick/eventhandler and going to need to be passed a folder name and directory? */}
                 </button>
@@ -170,17 +171,22 @@ class Picture extends Component{
     render() {
         return(
             <div className = "picture">
-                <img src = {this.props.target} key = {this.props.name}></img>
+                <img src = {this.props.target} key = {this.props.name} className = 'same'></img>
             </div>
             )
     }
 }
 
+
 class Text extends Component{
     render() {
+        fs.readFile(this.props.target, (error, data) => {
+            if(error){console.log(error)};
+            let fileText = data;
+        })
         return(
-            <div className="text" key = {this.props.name}> This is going to be a box full of text. 
-                {/* Going to need directory to text file, fill this with the text. */}
+            <div className="text same" key = {this.props.name}> 
+                <p className = 'same'>{fileText}</p>
             </div>
             )
     }
